@@ -9,7 +9,6 @@ stock-price-prediction
  ┣ data                  # Folder containing stock CSV files
  ┣ LSTM_model.py         # LSTM model implementation
  ┣ XGBoost_model.py      # XGBoost model implementation
- ┣ requirements.txt      # Required dependencies
  ┣ report.pdf            # Detailed project report
  ┣ README.md             # This documentation file
 ```
