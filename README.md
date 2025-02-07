@@ -1,7 +1,7 @@
 # Stock Price Prediction
 
 ## Project Overview
-This project aims to predict stock price movements using machine learning models, specifically LSTM (Long Short-Term Memory) and XGBoost (Extreme Gradient Boosting). The models are trained to predict the next day's closing price based on historical stock data and various technical indicators.
+This project aims to predict stock price movements using machine learning and deep learning models, specifically LSTM (Long Short-Term Memory) and XGBoost (Extreme Gradient Boosting). The models are trained to predict the next day's closing price based on historical stock data and various technical indicators.
 
 ## Project Structure
 ```
@@ -26,12 +26,12 @@ The models utilize a variety of features, including:
 - Historical Price Data: Previous close prices (1, 3, 5, 10 days)
 
 ## Models Implemented
-### LSTM (Deep Learning)
+### LSTM 
 - Bidirectional LSTM layers for better sequential learning.
 - Batch Normalization & Dropout to improve stability and prevent overfitting.
 - Trained using Adam optimizer.
 
-### XGBoost (Tree-Based Model)
+### XGBoost 
 - Gradient Boosting Trees to capture complex relationships.
 - Feature engineering focused on statistical patterns.
 - Optimized with fine-tuned hyperparameters.
