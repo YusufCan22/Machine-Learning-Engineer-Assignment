@@ -150,11 +150,11 @@ if __name__ == "__main__":
     mae_real = mean_absolute_error(y_test_real, y_pred_real)
     rmse_real = np.sqrt(mean_squared_error(y_test_real, y_pred_real))
     r2 = r2_score(y_test_real, y_pred_real)
-    print(f"✅ R-squared (R²): {r2:.2f}")
+    print(f"R-squared (R²): {r2:.2f}")
 
     print(f"\n📊 XGBoost Sonuçları:")
-    print(f"✅ MAE: {mae_real:.4f}")
-    print(f"✅ RMSE: {rmse_real:.4f}")
+    print(f"MAE: {mae_real:.4f}")
+    print(f"RMSE: {rmse_real:.4f}")
 
     # Tahmin Grafiği
     plt.figure(figsize=(12, 6))
