@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import ta  # Teknik analiz kütüphanesi
+import ta  
 import xgboost as xgb
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
@@ -97,7 +97,7 @@ class XGBoostStockPredictor:
 
         df_features = df[important_features].astype(np.float32) 
 
-        # Close fiyatını ayrı ölçeklendir
+        # Close fiyatını ayrı ölçeklendirme
         df["Close"] = self.price_scaler.fit_transform(df[["Close"]])
         scaled_features = self.feature_scaler.fit_transform(df_features)
 
@@ -137,12 +137,12 @@ if __name__ == "__main__":
     # XGBoost Eğitimi
     xgb_model = predictor.train_xgboost(X_train, y_train)
 
-    # Test setinin tarihlerini al
+    # Test setinin tarihlerini alma
     test_dates = df["Date"].iloc[train_size:].reset_index(drop=True)
 
     y_pred_xgb = xgb_model.predict(X_test)
 
-    # Gerçek fiyat ölçeğinde tahminleri geri dönüştür
+    # Gerçek fiyat ölçeğinde tahminleri geri dönüştürme
     y_pred_real = predictor.price_scaler.inverse_transform(y_pred_xgb.reshape(-1, 1))
     y_test_real = predictor.price_scaler.inverse_transform(y_test.reshape(-1, 1))
 
