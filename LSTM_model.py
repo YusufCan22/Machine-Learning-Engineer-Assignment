@@ -115,12 +115,12 @@ if __name__ == "__main__":
     mae = mean_absolute_error(y_test_actual, y_pred_actual)
     rmse = np.sqrt(mean_squared_error(y_test_actual, y_pred_actual))
 
-    print(f"📉 Model Performans Değerleri:")
-    print(f"✅ MAE (Ortalama Mutlak Hata): {mae:.2f}")
-    print(f"✅ RMSE (Karekök Ortalama Hata): {rmse:.2f}")
+    print(f"Model Performans Değerleri:")
+    print(f"MAE (Ortalama Mutlak Hata): {mae:.2f}")
+    print(f"RMSE (Karekök Ortalama Hata): {rmse:.2f}")
 
     r2 = r2_score(y_test_actual, y_pred_actual)
-    print(f"✅ R-squared (R²): {r2:.2f}")
+    print(f"R-squared (R²): {r2:.2f}")
 
     # Test verisinin tarihlerini al (Son len(y_test) kadar)
     test_dates = df["Date"].iloc[-len(y_test):]  
