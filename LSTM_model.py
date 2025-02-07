@@ -27,7 +27,7 @@ class StockPredictor:
 
         df.columns = expected_columns  
         df = df.sort_values(by="Date")  # Tarihe göre sıralama
-        print(f"✅ Veri Yüklendi: {df.shape[0]} satır, {df.shape[1]} sütun.")
+        print(f"Veri Yüklendi: {df.shape[0]} satır, {df.shape[1]} sütun.")
         return df
 
     def feature_engineering(self, df):
