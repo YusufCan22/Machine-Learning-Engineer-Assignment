@@ -20,7 +20,7 @@ class StockPredictor:
         """Tek bir CSV dosyasını yükler ve hazırlar."""
         df = pd.read_csv(file_path, parse_dates=["Date"], sep=",", header=0, engine='python')
         
-        # Sütun isimlerini kontrol edelim
+        # Sütun isimlerini kontrol etme
         expected_columns = ["Date", "Open", "High", "Low", "Close", "Adj Close", "Volume"]
         if df.columns.tolist()[:7] != expected_columns:
             raise ValueError(f"Beklenen sütun isimleri: {expected_columns}, ancak dosyada farklı sütunlar var.")
@@ -66,7 +66,7 @@ class StockPredictor:
         return np.array(X), np.array(y)
     
     def build_model(self, input_shape):
-        """LSTM modeli oluştur."""
+        """LSTM modeli oluşturur."""
         model = Sequential([
             Bidirectional(LSTM(128, return_sequences=True, input_shape=input_shape)),
             BatchNormalization(),
@@ -81,7 +81,7 @@ class StockPredictor:
 if __name__ == "__main__":
     predictor = StockPredictor()
     
-    file_path = "C:\\Users\\Pc\\Desktop\\archive\\stocks\\HPQ.csv"  # Tek bir CSV dosyası
+    file_path = "stock.csv"  
     df = predictor.load_data(file_path)
     
     scaled_data = predictor.preprocess_data(df)
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     
     predictor.model = predictor.build_model((predictor.sequence_length, X_train.shape[2]))
     
-    # Callbacks ekleniyor
+    # Callbacks
     early_stopping = EarlyStopping(monitor='val_loss', patience=5, restore_best_weights=True,verbose=1)
     reduce_lr = ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=3)
 
@@ -123,21 +123,21 @@ if __name__ == "__main__":
     print(f"✅ R-squared (R²): {r2:.2f}")
 
     # Test verisinin tarihlerini al (Son len(y_test) kadar)
-    test_dates = df["Date"].iloc[-len(y_test):]  # DataFrame'den gerçek tarihleri çekiyoruz
+    test_dates = df["Date"].iloc[-len(y_test):]  
 
     plt.figure(figsize=(12, 6))
     plt.plot(test_dates, y_test_actual, label="Gerçek Değerler", color='blue')
     plt.plot(test_dates, y_pred_actual, label="Tahminler", color='red')
 
     # X ekseni için tarih formatlaması
-    plt.gca().xaxis.set_major_locator(mdates.YearLocator())  # Yıllık aralıklar koyar
-    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%Y"))  # Sadece yılı gösterir
+    plt.gca().xaxis.set_major_locator(mdates.YearLocator())  
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter("%Y"))  
 
-    plt.xlabel("Yıl")  # X ekseni etiketi
+    plt.xlabel("Yıl") 
     plt.ylabel("Kapanış Fiyatı")
     plt.title(f"LSTM Modeli - Gerçek vs Tahmin\nMAE: {mae:.2f}, RMSE: {rmse:.2f}")
     plt.legend()
     plt.grid()
-    plt.xticks(rotation=45)  # Tarihlerin eğik görünmesini sağlar
+    plt.xticks(rotation=45)  
 
     plt.show()
