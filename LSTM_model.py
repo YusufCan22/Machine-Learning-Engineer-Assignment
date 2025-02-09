@@ -17,7 +17,6 @@ class StockPredictor:
         self.scaler = MinMaxScaler()
 
     def load_data(self, file_path):
-        """Tek bir CSV dosyasını yükler ve hazırlar."""
         df = pd.read_csv(file_path, parse_dates=["Date"], sep=",", header=0, engine='python')
         
         # Sütun isimlerini kontrol etme
