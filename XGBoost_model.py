@@ -28,12 +28,12 @@ class XGBoostStockPredictor:
         # Tarihe göre sıralama
         df = df.sort_values(by="Date").reset_index(drop=True)
 
-        print(f"✅ Veri Yüklendi: {df.shape[0]} satır, {df.shape[1]} sütun.")
+        print(f"Veri Yüklendi: {df.shape[0]} satır, {df.shape[1]} sütun.")
         return df
 
 
     def feature_engineering(self, df):
-        """Teknik ve istatistiksel göstergeleri hesaplar."""
+        """Teknik ve istatistiksel göstergeler"""
 
         #  Hareketli Medyan (Rolling Median) (Son 10 Günlük)
         df["Rolling_Median_10"] = df["Close"].rolling(window=10).median()
@@ -152,7 +152,6 @@ if __name__ == "__main__":
     r2 = r2_score(y_test_real, y_pred_real)
     print(f"R-squared (R²): {r2:.2f}")
 
-    print(f"\n📊 XGBoost Sonuçları:")
     print(f"MAE: {mae_real:.4f}")
     print(f"RMSE: {rmse_real:.4f}")
 
